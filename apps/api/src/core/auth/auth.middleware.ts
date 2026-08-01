@@ -12,7 +12,10 @@ import type { AppEnv } from "../types/hono-env";
  * directly.
  */
 export const resolveSession: MiddlewareHandler<AppEnv> = async (c, next) => {
-  const result = await auth.api.getSession({ headers: c.req.raw.headers });
+  const result = await auth.api.getSession({
+    headers: new Headers(c.req.header()),
+  });
+
   c.set("session", result?.session ?? null);
   c.set("user", result?.user ?? null);
   await next();
