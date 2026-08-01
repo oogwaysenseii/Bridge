@@ -1,4 +1,4 @@
-import Redis from "ioredis";
+import { default as Redis } from "ioredis";
 import { env } from "../config/env";
 import { logger } from "../observability/logger";
 
