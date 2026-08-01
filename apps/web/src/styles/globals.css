@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Bridge design tokens — see tailwind.config.ts for the rationale comment.
+ * Values are HSL triplets (no `hsl()` wrapper) so Tailwind's `hsl(var(--x))`
+ * pattern in tailwind.config.ts can apply opacity modifiers.
+ */
+@layer base {
+  :root {
+    --background: 40 9% 98%; /* #FAFAF9 */
+    --foreground: 220 13% 10%; /* #16181D */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 10%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+
+    --accent: 243 79% 65%; /* #5B5FEF */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 243 79% 65%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 222 27% 6%; /* #0B0D12 */
+    --foreground: 220 14% 96%; /* #F4F5F7 */
+
+    --card: 222 24% 9%;
+    --card-foreground: 220 14% 96%;
+
+    --muted: 222 18% 14%;
+    --muted-foreground: 220 9% 65%;
+
+    --border: 222 15% 18%;
+    --input: 222 15% 18%;
+
+    --accent: 243 87% 71%;
+    --accent-foreground: 222 27% 6%;
+
+    --destructive: 0 63% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 243 87% 71%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Respect the user's motion preference platform-wide, not just on one
+       component — see frontend-design skill's accessibility quality floor. */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  /* Visible keyboard focus everywhere, never suppressed — accessibility
+     quality floor, not optional per-component polish. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
