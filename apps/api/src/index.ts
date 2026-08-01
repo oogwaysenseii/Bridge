@@ -41,6 +41,27 @@ const app = new Hono<AppEnv>()
 /** Exported for the Hono RPC client (apps/web/src/core/api/rpc-client.ts) — see ADR-007. */
 export type AppType = typeof app;
 
-serve({ fetch: app.fetch, port: env.PORT }, (info) => {
-  logger.info({ port: info.port }, `Bridge API listening`);
-});
+/**
+ * Local development / traditional Node deployment only. Per Vercel's own
+ * Hono deployment docs (vercel.com/docs/frameworks/backend/hono,
+ * hono.dev/docs/getting-started/vercel), a Vercel Function invokes the
+ * default-exported Hono app's `.fetch` directly per-request — nothing on
+ * that platform ever routes traffic to a bound port, so starting one
+ * there serves no purpose. Gated on Vercel's own `VERCEL` system env var.
+ */
+if (!env.VERCEL) {
+  serve({ fetch: app.fetch, port: env.PORT }, (info) => {
+    logger.info({ port: info.port }, `Bridge API listening`);
+  });
+}
+
+/**
+ * Required by Vercel's zero-config Hono detection: the app instance must
+ * be the module's default export for Vercel to recognize and correctly
+ * bundle it as a Vercel Function. Without this, Vercel falls back to
+ * treating the file as an unrecognized Node.js entry point — a naive,
+ * unbundled per-file transpile that leaves relative imports extensionless
+ * and unresolvable by Node's native ESM loader at runtime, which is what
+ * produced the ERR_MODULE_NOT_FOUND crash this fixes.
+ */
+export default app;

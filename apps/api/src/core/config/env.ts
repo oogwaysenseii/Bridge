@@ -32,6 +32,9 @@ const envSchema = z.object({
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 
   WEB_ORIGIN: z.url(),
+
+  /** Auto-set to "1" by Vercel's own runtime — not something we configure. Optional since it's absent everywhere else (local dev, other hosts). */
+  VERCEL: z.string().optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;
