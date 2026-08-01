@@ -8,7 +8,7 @@ import {
   PASSWORD_MAX_LENGTH,
   DISPLAY_NAME_MIN_LENGTH,
   DISPLAY_NAME_MAX_LENGTH,
-} from "./auth.schema";
+} from "./auth.schema.js";
 
 describe("emailSchema", () => {
   it("accepts a valid email", () => {

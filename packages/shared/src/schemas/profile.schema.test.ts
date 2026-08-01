@@ -5,7 +5,7 @@ import {
   profileSummarySchema,
   USERNAME_MIN_LENGTH,
   USERNAME_MAX_LENGTH,
-} from "./profile.schema";
+} from "./profile.schema.js";
 
 describe("usernameSchema", () => {
   it("accepts a valid username", () => {
