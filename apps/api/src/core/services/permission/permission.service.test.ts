@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { PermissionService } from "./permission.service";
-import { ForbiddenError } from "../../errors/app-error";
-import type { PermissionActor, PermissionResource } from "./permission.types";
+import { PermissionService } from "./permission.service.js";
+import { ForbiddenError } from "../../errors/app-error.js";
+import type { PermissionActor, PermissionResource } from "./permission.types.js";
 
 const owner: PermissionActor = { id: "owner-1" };
 const stranger: PermissionActor = { id: "stranger-1" };

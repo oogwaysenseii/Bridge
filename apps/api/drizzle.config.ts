@@ -1,5 +1,5 @@
 import { defineConfig } from "drizzle-kit";
-import { env } from "./src/core/config/env";
+import { env } from "./src/core/config/env.js";
 
 // See docs/database.md for schema conventions and docs/adr/008 for why
 // future-module tables (companies, jobs, courses, events, groups, dating,

@@ -1,5 +1,5 @@
-import type { Cache } from "./cache.interface";
-import { redis } from "./redis.client";
+import type { Cache } from "./cache.interface.js";
+import { redis } from "./redis.client.js";
 
 export class RedisCache implements Cache {
   public async get(key: string): Promise<string | null> {

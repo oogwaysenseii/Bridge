@@ -8,7 +8,7 @@ import {
   index,
   type AnyPgColumn,
 } from "drizzle-orm/pg-core";
-import { users } from "./identity.schema";
+import { users } from "./identity.schema.js";
 
 export const postVisibilityEnum = pgEnum("post_visibility", ["public", "connections", "private"]);
 

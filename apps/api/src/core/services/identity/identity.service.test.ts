@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { ProfileSummary } from "@bridge/shared";
-import type { Cache } from "../../cache/cache.interface";
-import type { IdentityRepository, IdentityUser } from "./identity.types";
-import { IdentityServiceImpl } from "./identity.service";
+import type { Cache } from "../../cache/cache.interface.js";
+import type { IdentityRepository, IdentityUser } from "./identity.types.js";
+import { IdentityServiceImpl } from "./identity.service.js";
 
 const FIXED_DATE = new Date("2026-01-01T00:00:00.000Z");
 

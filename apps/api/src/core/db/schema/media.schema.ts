@@ -1,5 +1,5 @@
 import { pgTable, uuid, text, timestamp, integer, jsonb, pgEnum, index } from "drizzle-orm/pg-core";
-import { users } from "./identity.schema";
+import { users } from "./identity.schema.js";
 
 export const mediaTypeEnum = pgEnum("media_type", ["image", "video", "document"]);
 

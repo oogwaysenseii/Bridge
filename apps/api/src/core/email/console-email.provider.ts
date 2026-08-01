@@ -1,6 +1,6 @@
-import type { EmailProvider, SendEmailInput } from "./email-provider.interface";
-import { logger } from "../observability/logger";
-import { env } from "../config/env";
+import type { EmailProvider, SendEmailInput } from "./email-provider.interface.js";
+import { logger } from "../observability/logger.js";
+import { env } from "../config/env.js";
 
 /**
  * Logs the email instead of sending it. This is the correct default for

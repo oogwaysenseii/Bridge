@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import type { ProfileSummary } from "@bridge/shared";
-import { db, type Database } from "../../db/client";
-import { users, profiles } from "../../db/schema";
-import type { IdentityRepository, IdentityUser } from "./identity.types";
+import { db, type Database } from "../../db/client.js";
+import { users, profiles } from "../../db/schema/index.js";
+import type { IdentityRepository, IdentityUser } from "./identity.types.js";
 
 const SINGLE_ROW = 1;
 

@@ -2,10 +2,10 @@
 // jobs, courses, events, groups, dating, and — as of the v1.2 review's
 // corrected classification — reviews) are documented in docs/architecture.md
 // §4 but intentionally NOT exported here. See ADR-008.
-export * from "./identity.schema";
-export * from "./media.schema";
-export * from "./social.schema";
-export * from "./marketplace.schema";
-export * from "./messaging.schema";
-export * from "./notifications.schema";
-export * from "./activity.schema";
+export * from "./identity.schema.js";
+export * from "./media.schema.js";
+export * from "./social.schema.js";
+export * from "./marketplace.schema.js";
+export * from "./messaging.schema.js";
+export * from "./notifications.schema.js";
+export * from "./activity.schema.js";

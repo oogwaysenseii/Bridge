@@ -1,7 +1,7 @@
 import type { MiddlewareHandler } from "hono";
 import { randomUUID } from "node:crypto";
-import { logger } from "../observability/logger";
-import type { AppEnv } from "../types/hono-env";
+import { logger } from "../observability/logger.js";
+import type { AppEnv } from "../types/hono-env.js";
 
 const REQUEST_ID_HEADER = "x-request-id";
 

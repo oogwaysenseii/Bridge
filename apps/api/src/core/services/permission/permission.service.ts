@@ -1,5 +1,5 @@
-import { ForbiddenError } from "../../errors/app-error";
-import type { PermissionAction, PermissionActor, PermissionResource } from "./permission.types";
+import { ForbiddenError } from "../../errors/app-error.js";
+import type { PermissionAction, PermissionActor, PermissionResource } from "./permission.types.js";
 
 /**
  * Centralizes authorization decisions instead of scattering ad hoc

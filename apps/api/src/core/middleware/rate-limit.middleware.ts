@@ -1,5 +1,5 @@
 import type { MiddlewareHandler } from "hono";
-import { RateLimitedError } from "../errors/app-error";
+import { RateLimitedError } from "../errors/app-error.js";
 
 const MILLISECONDS_PER_SECOND = 1000;
 

@@ -1,6 +1,6 @@
-import type { EmailProvider } from "./email-provider.interface";
-import { ConsoleEmailProvider } from "./console-email.provider";
-import { env } from "../config/env";
+import type { EmailProvider } from "./email-provider.interface.js";
+import { ConsoleEmailProvider } from "./console-email.provider.js";
+import { env } from "../config/env.js";
 
 /**
  * Resolves to the configured EmailProvider implementation. Only "console"

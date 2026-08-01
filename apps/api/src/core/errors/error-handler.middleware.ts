@@ -1,7 +1,7 @@
 import type { ErrorHandler } from "hono";
 import { z, ZodError } from "zod";
-import { AppError } from "./app-error";
-import { logger } from "../observability/logger";
+import { AppError } from "./app-error.js";
+import { logger } from "../observability/logger.js";
 
 const HTTP_BAD_REQUEST = 400;
 /** Used both as the "is this a server error worth logging loudly" threshold and as the actual status for the generic fallback response below — same value, two related purposes. */

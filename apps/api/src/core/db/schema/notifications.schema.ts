@@ -1,5 +1,5 @@
 import { pgTable, uuid, timestamp, pgEnum, index } from "drizzle-orm/pg-core";
-import { users } from "./identity.schema";
+import { users } from "./identity.schema.js";
 
 export const notificationTypeEnum = pgEnum("notification_type", [
   "like",

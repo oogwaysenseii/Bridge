@@ -1,6 +1,6 @@
 import { Redis } from "ioredis";
-import { env } from "../config/env";
-import { logger } from "../observability/logger";
+import { env } from "../config/env.js";
+import { logger } from "../observability/logger.js";
 
 /**
  * Single shared Redis connection. Used directly for caching (e.g. the

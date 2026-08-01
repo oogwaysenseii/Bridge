@@ -1,6 +1,6 @@
 import { Queue, Worker, type Job, type Processor } from "bullmq";
-import { redis } from "../cache/redis.client";
-import { logger } from "../observability/logger";
+import { redis } from "../cache/redis.client.js";
+import { logger } from "../observability/logger.js";
 
 /**
  * Central queue names live here as a const enum-like object — not scattered

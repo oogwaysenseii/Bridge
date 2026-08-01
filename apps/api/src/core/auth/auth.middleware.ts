@@ -1,7 +1,7 @@
 import type { Context, MiddlewareHandler } from "hono";
-import { auth, type AuthUser } from "./auth";
-import { UnauthorizedError } from "../errors/app-error";
-import type { AppEnv } from "../types/hono-env";
+import { auth, type AuthUser } from "./auth.js";
+import { UnauthorizedError } from "../errors/app-error.js";
+import type { AppEnv } from "../types/hono-env.js";
 
 /**
  * Resolves the Better Auth session for every request and attaches it to

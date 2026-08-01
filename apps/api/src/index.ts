@@ -2,16 +2,16 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { secureHeaders } from "hono/secure-headers";
-import { auth } from "./core/auth/auth";
-import { resolveSession } from "./core/auth/auth.middleware";
-import { requestContext } from "./core/middleware/request-context.middleware";
-import { rateLimit } from "./core/middleware/rate-limit.middleware";
-import { errorHandler } from "./core/errors/error-handler.middleware";
-import { coreRouter } from "./core/api/router";
-import { env } from "./core/config/env";
-import { logger } from "./core/observability/logger";
-import { initSentry } from "./core/observability/sentry";
-import type { AppEnv } from "./core/types/hono-env";
+import { auth } from "./core/auth/auth.js";
+import { resolveSession } from "./core/auth/auth.middleware.js";
+import { requestContext } from "./core/middleware/request-context.middleware.js";
+import { rateLimit } from "./core/middleware/rate-limit.middleware.js";
+import { errorHandler } from "./core/errors/error-handler.middleware.js";
+import { coreRouter } from "./core/api/router.js";
+import { env } from "./core/config/env.js";
+import { logger } from "./core/observability/logger.js";
+import { initSentry } from "./core/observability/sentry.js";
+import type { AppEnv } from "./core/types/hono-env.js";
 
 const AUTH_RATE_LIMIT = { limit: 10, windowSeconds: 60 };
 

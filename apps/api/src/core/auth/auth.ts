@@ -1,11 +1,11 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH } from "@bridge/shared";
-import { db } from "../db/client";
-import { users, sessions, accounts, verifications } from "../db/schema";
-import { env } from "../config/env";
-import { emailProvider } from "../email/email.factory";
-import { logger } from "../observability/logger";
+import { db } from "../db/client.js";
+import { users, sessions, accounts, verifications } from "../db/schema/index.js";
+import { env } from "../config/env.js";
+import { emailProvider } from "../email/email.factory.js";
+import { logger } from "../observability/logger.js";
 
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30 days
 const SESSION_UPDATE_AGE_SECONDS = 60 * 60 * 24; // rotate session token daily on active use

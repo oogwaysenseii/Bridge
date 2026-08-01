@@ -1,5 +1,5 @@
 import { pgTable, uuid, timestamp, jsonb, pgEnum, index } from "drizzle-orm/pg-core";
-import { users } from "./identity.schema";
+import { users } from "./identity.schema.js";
 
 /**
  * Extend this list as new event-emitting actions are added — it's the

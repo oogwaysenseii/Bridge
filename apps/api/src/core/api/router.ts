@@ -1,10 +1,10 @@
 import { Hono } from "hono";
-import type { AppEnv } from "../types/hono-env";
-import { requireAuth, requireUser } from "../auth/auth.middleware";
-import { IdentityServiceImpl } from "../services/identity/identity.service";
-import { DrizzleIdentityRepository } from "../services/identity/identity.repository";
-import { defaultCache } from "../cache/redis-cache";
-import { NotFoundError } from "../errors/app-error";
+import type { AppEnv } from "../types/hono-env.js";
+import { requireAuth, requireUser } from "../auth/auth.middleware.js";
+import { IdentityServiceImpl } from "../services/identity/identity.service.js";
+import { DrizzleIdentityRepository } from "../services/identity/identity.repository.js";
+import { defaultCache } from "../cache/redis-cache.js";
+import { NotFoundError } from "../errors/app-error.js";
 
 /**
  * Wired here, not inside identity.service.ts itself — see that file's own

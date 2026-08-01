@@ -1,5 +1,5 @@
 import { pgTable, uuid, text, timestamp, pgEnum, uniqueIndex, index } from "drizzle-orm/pg-core";
-import { users } from "./identity.schema";
+import { users } from "./identity.schema.js";
 
 export const conversationTypeEnum = pgEnum("conversation_type", ["direct", "group", "marketplace"]);
 /** Extend this enum, not the shape, when a new context (e.g. a future job application thread) needs to link back to a module without messaging depending on it. */

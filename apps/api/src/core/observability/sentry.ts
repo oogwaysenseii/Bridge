@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/node";
-import { env } from "../config/env";
-import { logger } from "./logger";
+import { env } from "../config/env.js";
+import { logger } from "./logger.js";
 
 const PRODUCTION_TRACE_SAMPLE_RATE = 0.1;
 const DEVELOPMENT_TRACE_SAMPLE_RATE = 1.0;

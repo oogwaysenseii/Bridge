@@ -1,5 +1,5 @@
-import type { Logger } from "../observability/logger";
-import type { AuthSession, AuthUser } from "../auth/auth";
+import type { Logger } from "../observability/logger.js";
+import type { AuthSession, AuthUser } from "../auth/auth.js";
 
 /**
  * Hono's context `Variables` generic, used everywhere the app is

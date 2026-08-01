@@ -1,6 +1,6 @@
 import type { ProfileSummary } from "@bridge/shared";
-import type { Cache } from "../../cache/cache.interface";
-import type { IdentityRepository, IdentityService as IIdentityService, IdentityUser } from "./identity.types";
+import type { Cache } from "../../cache/cache.interface.js";
+import type { IdentityRepository, IdentityService as IIdentityService, IdentityUser } from "./identity.types.js";
 
 const PROFILE_SUMMARY_CACHE_TTL_SECONDS = 300;
 const PROFILE_SUMMARY_CACHE_KEY_PREFIX = "identity:profile-summary:";
