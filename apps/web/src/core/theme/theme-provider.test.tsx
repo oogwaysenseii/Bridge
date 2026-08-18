@@ -44,7 +44,7 @@ describe("ThemeProvider", () => {
     mockMatchMedia(false);
   });
 
-  it("defaults to the system theme when nothing is stored", () => {
+  it("defaults to light when nothing is stored, even if the OS prefers dark", () => {
     mockMatchMedia(true);
     render(
       <ThemeProvider>
@@ -52,8 +52,8 @@ describe("ThemeProvider", () => {
       </ThemeProvider>,
     );
 
-    expect(screen.getByTestId("theme")).toHaveTextContent("system");
-    expect(screen.getByTestId("resolved")).toHaveTextContent("dark");
+    expect(screen.getByTestId("theme")).toHaveTextContent("light");
+    expect(screen.getByTestId("resolved")).toHaveTextContent("light");
   });
 
   it("applies the .dark class to <html> when the resolved theme is dark", () => {

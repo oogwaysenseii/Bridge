@@ -3,55 +3,71 @@
 @tailwind utilities;
 
 /*
- * Bridge design tokens — see tailwind.config.ts for the rationale comment.
- * Values are HSL triplets (no `hsl()` wrapper) so Tailwind's `hsl(var(--x))`
- * pattern in tailwind.config.ts can apply opacity modifiers.
+ * Bridge design tokens — from the plaza-layout mock + BRIDGE-brief §8.
+ *   Ink      #12161B  text / primary buttons
+ *   Mist     #EEF1F5  app background
+ *   Card     #FFFFFF
+ *   Line     #DDE2E8  borders
+ *   Verdigris #1D6B58 primary / active  (+ soft #DCEDE6)
+ *   Gold     #F2B705  reserved for money & unread — backgrounds/badges only,
+ *                     never small text on white (contrast).
+ *   Slate    #6B7480  secondary text
+ * Values are HSL triplets (no `hsl()` wrapper) so Tailwind can apply
+ * opacity modifiers via `hsl(var(--x) / <alpha-value>)`.
  */
 @layer base {
   :root {
-    --background: 40 9% 98%; /* #FAFAF9 */
-    --foreground: 220 13% 10%; /* #16181D */
+    --background: 214 26% 95%; /* Mist #EEF1F5 */
+    --foreground: 213 20% 9%; /* Ink #12161B */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 10%;
+    --card-foreground: 213 20% 9%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 214 22% 93%;
+    --muted-foreground: 214 9% 46%; /* Slate #6B7480 */
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 213 19% 89%; /* Line #DDE2E8 */
+    --input: 213 19% 89%;
 
-    --accent: 243 79% 65%; /* #5B5FEF */
+    --accent: 165 57% 27%; /* Verdigris #1D6B58 */
     --accent-foreground: 0 0% 100%;
+    --accent-soft: 155 32% 90%; /* #DCEDE6 */
+
+    --gold: 45 96% 48%; /* #F2B705 */
+    --gold-foreground: 213 20% 9%; /* Ink on gold */
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --ring: 243 79% 65%;
+    --ring: 165 57% 27%;
 
-    --radius: 0.625rem;
+    --radius: 0.875rem; /* 14px cards per the mock */
   }
 
   .dark {
-    --background: 222 27% 6%; /* #0B0D12 */
-    --foreground: 220 14% 96%; /* #F4F5F7 */
+    --background: 213 20% 7%;
+    --foreground: 214 26% 95%;
 
-    --card: 222 24% 9%;
-    --card-foreground: 220 14% 96%;
+    --card: 213 18% 11%;
+    --card-foreground: 214 26% 95%;
 
-    --muted: 222 18% 14%;
-    --muted-foreground: 220 9% 65%;
+    --muted: 213 15% 15%;
+    --muted-foreground: 214 9% 65%;
 
-    --border: 222 15% 18%;
-    --input: 222 15% 18%;
+    --border: 213 14% 18%;
+    --input: 213 14% 18%;
 
-    --accent: 243 87% 71%;
-    --accent-foreground: 222 27% 6%;
+    --accent: 165 45% 42%;
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 165 35% 15%;
+
+    --gold: 45 96% 48%;
+    --gold-foreground: 213 20% 9%;
 
     --destructive: 0 63% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --ring: 243 87% 71%;
+    --ring: 165 45% 42%;
   }
 
   * {
@@ -60,21 +76,27 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    /* Respect the user's motion preference platform-wide, not just on one
-       component — see frontend-design skill's accessibility quality floor. */
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display;
+    @apply font-display tracking-tight;
   }
 
-  /* Visible keyboard focus everywhere, never suppressed — accessibility
-     quality floor, not optional per-component polish. */
+  /* Visible keyboard focus everywhere, never suppressed. */
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 

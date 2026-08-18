@@ -1,7 +1,7 @@
 import { hc } from "hono/client";
 import type { AppType } from "@bridge/api";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000";
 
 /**
  * The entire point of ADR-007: `AppType` is imported directly from the API

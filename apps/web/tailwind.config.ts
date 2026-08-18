@@ -2,30 +2,24 @@ import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
 
 /**
- * Design tokens for Bridge — see docs/VISION.md ("Premium. Minimal. Fast.")
- * Palette: a cool graphite neutral base (not the generic warm-cream-plus-
- * terracotta or near-black-plus-acid-green defaults) with a single
- * signature accent — an indigo-violet, chosen to read as "connection"
- * without being a generic SaaS blue. Named here as actual values so future
- * phases don't invent new ad hoc colors.
+ * Bridge design tokens — see src/styles/globals.css for the palette values
+ * (Ink / Mist / Verdigris / Gold / Slate, from BRIDGE-brief §8).
  *
- *   --accent:      #5B5FEF  (signature — links, primary actions, focus rings)
- *   --accent-ink:  #FFFFFF  (text on accent)
- *   light bg:      #FAFAF9  ink: #16181D
- *   dark  bg:      #0B0D12  ink: #F4F5F7
+ * Type: Bricolage Grotesque (display/headings), Instrument Sans (UI/body),
+ * JetBrains Mono (prices, kind tags, counters). The font-family CSS
+ * variables are set by next/font in src/app/layout.tsx.
  *
- * Type: Space Grotesk (display/headings, used with restraint — weights
- * 500-700 only) paired with Inter (body/UI, highly legible at small sizes)
- * and JetBrains Mono (utility — timestamps, IDs, code-like data).
+ * Rule of use: `gold` is reserved for money & unread signals, and is a
+ * background/accent color only — ink text on gold, never gold text on white.
  */
 const config: Config = {
   darkMode: "class",
-  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  content: ["./src/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
       padding: "1.5rem",
-      screens: { "2xl": "1280px" },
+      screens: { "2xl": "1440px" },
     },
     extend: {
       colors: {
@@ -41,6 +35,11 @@ const config: Config = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          soft: "hsl(var(--accent-soft))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--gold-foreground))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -57,9 +56,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ["'Space Grotesk'", "sans-serif"],
-        sans: ["Inter", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },
