@@ -10,7 +10,7 @@ This is a genuinely open decision, pending product-owner input — not a gap in 
 - **Persistent worker process:** BullMQ workers (image variant generation, notification fan-out, moderation, purge jobs) require a **long-running Node process**, not a pure request/response edge function. This rules out edge-function-only platforms for the worker component specifically — the API layer itself can still run on the edge if the provider supports it.
 - **Object storage:** S3-compatible, for original + variant media
 - **CDN:** in front of object storage for media delivery
-- **Transactional email:** provider not yet selected (blocks Better Auth email verification/reset — open decision, see conversation history)
+- **Transactional email:** implemented via Resend (see `apps/api/src/core/email/resend-email.provider.ts`). Requires `RESEND_API_KEY` and `EMAIL_FROM` (an address on a domain verified in the Resend dashboard) — both enforced at startup by `env.ts` whenever `EMAIL_PROVIDER=resend`. Postmark and SES remain reserved `EMAIL_PROVIDER` values with no implementation, only added if Resend is ever replaced.
 
 ## Environments
 - `development` — local, Docker Compose for Postgres/Redis
@@ -24,7 +24,7 @@ This is a genuinely open decision, pending product-owner input — not a gap in 
 
 ## Decision needed before Phase 1 infra provisioning
 1. Hosting provider (Vercel / Fly / Railway / self-hosted / other)
-2. Transactional email provider (Resend / Postmark / SES / other)
+2. ~~Transactional email provider~~ — resolved: Resend (see above)
 3. Object storage provider (S3 / Cloudflare R2 / other)
 
-None of these block the Phase 1 **code** scaffolding (schema, services, routes can all be written against local Docker Compose Postgres/Redis first), but all three are required before Phase 1 can be deployed anywhere.
+Object storage and the hosting provider still block full production readiness; email no longer does.

@@ -77,7 +77,13 @@ export const accounts = pgTable(
   ],
 );
 
-/** Better Auth-owned verification token table (email verify, password reset). */
+/**
+ * Better Auth-owned verification token table (email verify, password reset).
+ * `updatedAt` is required by Better Auth's verification model (verified
+ * against the installed v1.6.25 — @better-auth/core/dist/db/get-tables.mjs
+ * declares it `required: true` with an onUpdate hook), so it must exist here
+ * even though nothing else in Bridge reads it.
+ */
 export const verifications = pgTable(
   "verification",
   {
@@ -86,6 +92,7 @@ export const verifications = pgTable(
     value: text("value").notNull(),
     expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );

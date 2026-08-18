@@ -113,6 +113,14 @@ export const auth = betterAuth({
     // Cookies are only sent over HTTPS in production. Not a session-
     // rotation control — see `session.updateAge` above for that.
     useSecureCookies: env.NODE_ENV === "production",
+    database: {
+      // Our auth tables use Postgres `uuid` primary keys (identity.schema.ts).
+      // Better Auth's default ID generator produces a 32-char alphanumeric
+      // string, which Postgres rejects for uuid columns — verified against
+      // the installed v1.6.25 (@better-auth/core/dist/utils/id.mjs). "uuid"
+      // switches it to crypto.randomUUID(), which the columns accept.
+      generateId: "uuid",
+    },
   },
 });
 

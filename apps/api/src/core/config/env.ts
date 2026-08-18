@@ -35,6 +35,18 @@ const envSchema = z.object({
 
   /** Auto-set to "1" by Vercel's own runtime — not something we configure. Optional since it's absent everywhere else (local dev, other hosts). */
   VERCEL: z.string().optional(),
+
+  /**
+   * Both required only when EMAIL_PROVIDER="resend" — enforced explicitly
+   * in loadEnv() below, not here, since that's a cross-field condition
+   * plain optional() fields can't express on their own. EMAIL_FROM is a
+   * plain string, not z.email(): Resend accepts both a bare address and a
+   * "Name <address>" format, and the address must be on a domain verified
+   * in the Resend dashboard — that's an account-level constraint this
+   * schema can't validate, only the vendor can.
+   */
+  RESEND_API_KEY: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;
@@ -46,7 +58,15 @@ function loadEnv(): Env {
     console.error(z.flattenError(parsed.error).fieldErrors);
     throw new Error("Invalid environment configuration — see errors above.");
   }
-  return parsed.data;
+
+  const data = parsed.data;
+  if (data.EMAIL_PROVIDER === "resend" && (!data.RESEND_API_KEY || !data.EMAIL_FROM)) {
+    throw new Error(
+      'EMAIL_PROVIDER="resend" requires both RESEND_API_KEY and EMAIL_FROM to be set.',
+    );
+  }
+
+  return data;
 }
 
 export const env: Env = loadEnv();
